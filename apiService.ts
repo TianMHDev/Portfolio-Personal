@@ -3,8 +3,9 @@
  * Maneja todas las peticiones HTTP para proyectos, herramientas, perfil y autenticación.
  */
 
-// URL base para el backend (Quarkus)
-const API_BASE_URL = (import.meta as any).env.VITE_API_BASE_URL || 'http://localhost:8080';
+// URL base para el backend (Quarkus) con prefijo /api configurado en application.yml
+const BASE = ((import.meta as any).env.VITE_API_BASE_URL || 'http://localhost:8080').replace(/\/$/, '');
+const API_BASE_URL = BASE.endsWith('/api') ? BASE : `${BASE}/api`;
 
 // Configuración de cabeceras comunes para las peticiones
 const getHeaders = () => ({

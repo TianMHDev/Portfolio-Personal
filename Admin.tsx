@@ -158,7 +158,8 @@ const Admin: React.FC = () => {
         const toolData = {
             name: formData.get('name'),
             category: formData.get('category'),
-            status: formData.get('status')
+            status: formData.get('status'),
+            progress: 0 // Valor por defecto requerido por el backend
         };
 
         try {
