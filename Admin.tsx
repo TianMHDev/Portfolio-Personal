@@ -125,7 +125,8 @@ const Admin: React.FC = () => {
             imageUrls: [
                 formData.get('imageUrl1'),
                 formData.get('imageUrl2'),
-                formData.get('imageUrl3')
+                formData.get('imageUrl3'),
+                formData.get('imageUrl4')
             ].filter(url => url && (url as string).trim()),
             version: formData.get('version') || '1.0.0'
         };
@@ -499,8 +500,9 @@ const Admin: React.FC = () => {
                                 <FormField label="URL_Imagen_1 (Principal)" name="imageUrl1" defaultValue={editingProject?.images?.[0]?.url || editingProject?.imageUrl} />
                                 <FormField label="URL_Imagen_2" name="imageUrl2" defaultValue={editingProject?.images?.[1]?.url} />
                             </div>
-                            <div className="grid grid-cols-1 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <FormField label="URL_Imagen_3" name="imageUrl3" defaultValue={editingProject?.images?.[2]?.url} />
+                                <FormField label="URL_Imagen_4" name="imageUrl4" defaultValue={editingProject?.images?.[3]?.url} />
                             </div>
                             <FormField label="Versión" name="version" defaultValue={editingProject?.version || '1.1.0'} placeholder="1.1.0" />
                             <button disabled={loading} className="w-full bg-cyber-cyan text-black font-black p-4 uppercase tracking-[0.2em] hover:bg-white transition-all shadow-[0_0_30px_rgba(0,243,255,0.3)]">
@@ -533,7 +535,7 @@ const Admin: React.FC = () => {
                             <div className="space-y-1">
                                 <label className="text-xs font-mono text-gray-500 uppercase">Estado_De_Dominio</label>
                                 <select name="status" defaultValue={editingTool?.status || 'LEARNING'} className="w-full bg-black border border-cyber-dark p-4 text-sm text-cyber-purple outline-none font-mono">
-                                    <option value="LEARNING">APRENDIENDO [64%%]</option>
+                                    <option value="LEARNING">APRENDIENDO [64%]</option>
                                     <option value="BASIC">CONOCIMIENTO_BÁSICO</option>
                                     <option value="INTERMEDIATE">NIVEL_INTERMEDIO</option>
                                     <option value="MASTERED">DOMINIO_TOTAL [HACKED]</option>
