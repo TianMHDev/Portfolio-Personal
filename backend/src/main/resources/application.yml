@@ -8,9 +8,9 @@ quarkus:
   http:
     cors:
       enabled: true
-      origins: "/https?:\\/\\/.*vercel\\.app/,/http:\\/\\/localhost:.*/"
+      origins: "*"
       methods: GET,POST,PUT,DELETE,OPTIONS
-      headers: Content-Type,Authorization
+      headers: "*"
       exposed-headers: Content-Disposition
   
   mailer:
