@@ -16,10 +16,11 @@ quarkus:
   mailer:
     from: "sebastianmarriagahoyos@gmail.com"
     host: "smtp.gmail.com"
-    port: 465
-    ssl: true
+    port: 587
+    start-tls: REQUIRED
     username: "sebastianmarriagahoyos@gmail.com"
     password: "${MAIL_PASSWORD:}"
+    trust-all: true
     mock: false
 
   security:
