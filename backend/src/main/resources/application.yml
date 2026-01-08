@@ -13,15 +13,9 @@ quarkus:
       headers: "*"
       exposed-headers: Content-Disposition
   
-  mailer:
-    from: "sebastianmarriagahoyos@gmail.com"
-    host: "smtp.gmail.com"
-    port: 587
-    start-tls: REQUIRED
-    username: "sebastianmarriagahoyos@gmail.com"
-    password: "${MAIL_PASSWORD:}"
-    trust-all: true
-    mock: false
+  # Resend API Configuration
+resend:
+  api.key: ${RESEND_API_KEY:REPLACE_ME}
 
   security:
     auth:
