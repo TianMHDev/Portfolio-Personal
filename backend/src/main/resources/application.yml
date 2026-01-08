@@ -1,0 +1,74 @@
+quarkus:
+  hibernate-orm:
+    log:
+      sql: true
+
+  http:
+    cors:
+      enabled: true
+      origins: "*"
+      methods: GET,POST,PUT,DELETE,OPTIONS
+      headers: Content-Type,Authorization
+  
+  mailer:
+    from: "sebastianmarriagahoyos@gmail.com"
+    host: "smtp.gmail.com"
+    port: 465
+    ssl: true
+    username: "sebastianmarriagahoyos@gmail.com"
+    password: "${MAIL_PASSWORD:}"
+    mock: false
+
+  security:
+    auth:
+      enabled-in-dev-mode: true
+
+  smallrye-jwt:
+    enabled: true
+
+  swagger-ui:
+    always-include: true
+    path: /swagger-ui
+
+"%dev":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      devservices:
+        enabled: true
+        db-name: portfolio
+    hibernate-orm:
+      database:
+        generation: drop-and-create
+      sql-load-script: import.sql
+
+"%prod":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      username: ${DB_USERNAME:postgres}
+      password: ${DB_PASSWORD:}
+      jdbc:
+        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:portfolio}
+    hibernate-orm:
+      database:
+        generation: update
+
+mp:
+  jwt:
+    verify:
+      issuer: https://sebastian-portfolio.com
+      publickey:
+        location: publicKey.pem
+
+smallrye:
+  jwt:
+    sign:
+      key:
+        location: privateKey.pem
+
+openapi:
+  info:
+    title: Sebastian Portfolio API
+    version: 1.0.0
+    description: REST API for managing projects and contacts for a professional portfolio.

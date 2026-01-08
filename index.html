@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backend Developer | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@300;400;700&family=Rajdhani:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cyber: {
+              black: '#050a10',
+              dark: '#0a111c',
+              panel: '#0f1a29',
+              cyan: '#00f3ff',
+              cyanDim: 'rgba(0, 243, 255, 0.1)',
+              purple: '#bc13fe',
+              purpleDim: 'rgba(188, 19, 254, 0.1)',
+              green: '#0aff60',
+              text: '#e0f7fa'
+            }
+          },
+          fontFamily: {
+            display: ['Orbitron', 'sans-serif'],
+            mono: ['Roboto Mono', 'monospace'],
+            body: ['Rajdhani', 'sans-serif'],
+          },
+          backgroundImage: {
+            'grid-pattern': "linear-gradient(to right, #1e293b 1px, transparent 1px), linear-gradient(to bottom, #1e293b 1px, transparent 1px)",
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #050a10;
+      color: #e0f7fa;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a111c;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f3ff;
+    }
+
+    .cyber-glitch {
+      animation: glitch 1s linear infinite;
+    }
+
+    @keyframes glitch {
+
+      2%,
+      64% {
+        transform: translate(2px, 0) skew(0deg);
+      }
+
+      4%,
+      60% {
+        transform: translate(-2px, 0) skew(0deg);
+      }
+
+      62% {
+        transform: translate(0, 0) skew(5deg);
+      }
+    }
+
+    @keyframes spin-slow {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .animate-spin-slow {
+      animation: spin-slow 8s linear infinite;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(10, 17, 28, 0.5);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #bc13fe;
+      border-radius: 2px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #00f3ff;
+    }
+
+    @keyframes scan {
+      0% {
+        top: 0%;
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes shrink-width {
+      from { width: 100%; }
+      to { width: 0%; }
+    }
+    .animate-shrink-width {
+      animation: shrink-width linear forwards;
+    }
+    
+    @keyframes slide-in-right {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .animate-in.slide-in-from-right-full {
+      animation: slide-in-right 0.3s ease-out forwards;
+    }
+  </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+
+</html>

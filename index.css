@@ -1,0 +1,50 @@
+/* Base styles for the portfolio */
+:root {
+    --cyber-black: #050a10;
+    --cyber-dark: #0a111c;
+    --cyber-panel: #0f1a29;
+    --cyber-cyan: #00f3ff;
+    --cyber-purple: #bc13fe;
+    --cyber-green: #0aff60;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--cyber-black);
+    color: #e0f7fa;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* Animations and Utilities missing in Tailwind */
+@keyframes pulse-cyan {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+    }
+}
+
+.animate-pulse-cyan {
+    animation: pulse-cyan 2s infinite;
+}
+
+@keyframes shrink-width {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+.animate-shrink-width {
+    animation: shrink-width linear forwards;
+}
