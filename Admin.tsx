@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Terminal, Lock, LogOut, Plus, Trash2, Edit2, Book, Layers, Save, X, ExternalLink, User, CheckCircle2, Globe, XCircle } from 'lucide-react';
+import { Terminal, Lock, LogOut, Plus, Trash2, Edit2, Book, Layers, Save, X, ExternalLink, User, CheckCircle2, Globe, XCircle, Menu } from 'lucide-react';
 import { apiService } from './apiService';
 import { CyberCard, Badge } from './components/CyberComponents';
 import CyberToast from './components/CyberToast';
@@ -35,6 +35,7 @@ const Admin: React.FC = () => {
     const [editingProject, setEditingProject] = useState<any>(null);
     const [editingTool, setEditingTool] = useState<any>(null);
     const [confirmModal, setConfirmModal] = useState<{ message: string, onConfirm: () => void } | null>(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     // --- CARGA DE DATOS ---
     useEffect(() => {
@@ -266,37 +267,86 @@ const Admin: React.FC = () => {
     // --- RENDERIZADO: PANEL PRINCIPAL (AUTENTICADO) ---
     return (
         <div className="min-h-screen bg-cyber-black text-white font-body p-6 md:p-12">
-            <header className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between mb-12 border-b border-cyber-dark pb-6 gap-6 text-center sm:text-left">
-                <div className="flex items-center gap-3">
-                    <div className="p-2 border border-cyber-cyan rounded-sm shrink-0">
-                        <Terminal className="text-cyber-cyan animate-pulse" />
+            {/* HEADER PROFESIONAL - RESPONSIVO */}
+            <header className="fixed top-0 left-0 right-0 z-40 bg-cyber-black/80 backdrop-blur-md border-b border-cyber-dark">
+                <div className="max-w-7xl mx-auto px-6 h-16 sm:h-20 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="p-1.5 border border-cyber-cyan rounded-xs">
+                            <Terminal size={18} className="text-cyber-cyan animate-pulse" />
+                        </div>
+                        <div className="hidden sm:block">
+                            <h1 className="text-xl font-display font-black tracking-tighter uppercase italic">PANEL_ADMIN</h1>
+                            <p className="text-[9px] text-cyber-green font-mono uppercase tracking-widest">EN_LINEA // ACCESO_NIVEL_1</p>
+                        </div>
                     </div>
-                    <div>
-                        <h1 className="text-xl sm:text-2xl font-display font-black tracking-tighter uppercase italic">PANEL_DE_CONTROL</h1>
-                        <p className="text-[10px] text-cyber-green font-mono uppercase tracking-widest">STATUS: ADMIN_AUTORIZADO</p>
+
+                    <div className="flex items-center gap-4">
+                        <div className="hidden md:flex items-center gap-6 mr-6 border-r border-cyber-dark pr-6">
+                            <a href="/" target="_blank" className="text-[10px] font-mono text-gray-400 hover:text-cyber-cyan flex items-center gap-1 transition-all uppercase tracking-widest">
+                                <ExternalLink size={12} /> VER_SITE
+                            </a>
+                            <button onClick={handleLogout} className="text-[10px] font-mono text-gray-500 hover:text-red-500 transition-all uppercase tracking-widest">
+                                [DESCONECTAR]
+                            </button>
+                        </div>
+
+                        {/* Botón de Menú Móvil */}
+                        <button
+                            className="lg:hidden p-2 text-cyber-cyan border border-cyber-cyan/30 rounded"
+                            onClick={() => setMobileMenuOpen(true)}
+                        >
+                            <Menu size={20} />
+                        </button>
                     </div>
-                </div>
-                <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
-                    <a href="/" target="_blank" className="text-xs font-mono text-gray-400 hover:text-cyber-cyan flex items-center gap-1 transition-colors">
-                        <ExternalLink size={14} /> VER_SITIO_REAL
-                    </a>
-                    <button onClick={handleLogout} className="px-4 py-1.5 border border-red-500/30 text-gray-500 hover:text-red-500 hover:border-red-500 transition-all font-mono text-xs rounded-sm">
-                        <LogOut size={16} className="inline mr-2" /> [LOGOUT]
-                    </button>
                 </div>
             </header>
 
-            <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8">
-                {/* NAVEGACIÓN LATERAL / SUPERIOR EN MÓVIL */}
-                <aside className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 scrollbar-hide">
-                    <button onClick={() => setActiveTab('projects')} className={`flex-1 shrink-0 lg:w-full flex items-center justify-between p-4 border font-mono text-xs sm:text-sm transition-all whitespace-nowrap ${activeTab === 'projects' ? 'bg-cyber-cyan/10 border-cyber-cyan text-cyber-cyan shadow-[0_0_15px_rgba(0,243,255,0.1)]' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
-                        <div className="flex items-center gap-3"><Layers size={20} /> GESTIÓN_PROYECTOS</div>
-                        {activeTab === 'projects' && <div className="hidden sm:block w-1.5 h-1.5 bg-cyber-cyan rounded-full animate-pulse"></div>}
-                    </button>
-                    <button onClick={() => setActiveTab('profile')} className={`flex-1 shrink-0 lg:w-full flex items-center justify-between p-4 border font-mono text-xs sm:text-sm transition-all whitespace-nowrap ${activeTab === 'profile' ? 'bg-cyber-purple/10 border-cyber-purple text-cyber-purple shadow-[0_0_15px_rgba(188,19,254,0.1)]' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
-                        <div className="flex items-center gap-3"><User size={20} /> MI_PERFIL_GLOBAL</div>
-                        {activeTab === 'profile' && <div className="hidden sm:block w-1.5 h-1.5 bg-cyber-purple rounded-full animate-pulse"></div>}
-                    </button>
+            {/* OVERLAY MENÚ MÓVIL */}
+            <div className={`fixed inset-0 z-50 bg-cyber-black/98 transition-transform duration-300 transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} lg:hidden`}>
+                <div className="p-8 flex flex-col h-full">
+                    <div className="flex justify-between items-center mb-12">
+                        <div className="flex items-center gap-2 text-cyber-cyan font-display font-bold text-xl uppercase italic">
+                            <Terminal size={24} />
+                            <span>SISTEMA_V1.5</span>
+                        </div>
+                        <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-cyber-purple border border-cyber-purple/30 rounded">
+                            <X size={24} />
+                        </button>
+                    </div>
+                    <nav className="flex flex-col gap-6">
+                        <button onClick={() => { setActiveTab('projects'); setMobileMenuOpen(false); }} className={`p-6 border text-left font-mono ${activeTab === 'projects' ? 'border-cyber-cyan text-cyber-cyan bg-cyber-cyan/5' : 'border-cyber-dark text-gray-500'}`}>
+                            GESTIÓN_PROYECTOS
+                        </button>
+                        <button onClick={() => { setActiveTab('profile'); setMobileMenuOpen(false); }} className={`p-6 border text-left font-mono ${activeTab === 'profile' ? 'border-cyber-purple text-cyber-purple bg-cyber-purple/5' : 'border-cyber-dark text-gray-500'}`}>
+                            MI_PERFIL_GLOBAL
+                        </button>
+                        <hr className="border-cyber-dark my-4" />
+                        <button onClick={handleLogout} className="p-6 border border-red-500/30 text-red-500 text-left font-mono">
+                            LOGOUT_DEL_SISTEMA
+                        </button>
+                    </nav>
+                </div>
+            </div>
+
+            <main className="max-w-7xl mx-auto pt-24 sm:pt-32 px-6 grid grid-cols-1 lg:grid-cols-4 gap-8 pb-32">
+                {/* SIDEBAR - DESKTOP ONLY */}
+                <aside className="hidden lg:block space-y-4">
+                    <div className="sticky top-32">
+                        <button onClick={() => setActiveTab('projects')} className={`w-full flex items-center justify-between p-5 border font-mono text-xs tracking-widest transition-all ${activeTab === 'projects' ? 'bg-cyber-cyan/10 border-cyber-cyan text-cyber-cyan' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
+                            <div className="flex items-center gap-3"><Layers size={18} /> GESTIÓN_PROYECTOS</div>
+                        </button>
+                        <button onClick={() => setActiveTab('profile')} className={`w-full flex items-center justify-between p-5 border font-mono text-xs tracking-widest mt-3 transition-all ${activeTab === 'profile' ? 'bg-cyber-purple/10 border-cyber-purple text-cyber-purple' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
+                            <div className="flex items-center gap-3"><User size={18} /> MI_PERFIL_GLOBAL</div>
+                        </button>
+
+                        <div className="mt-12 p-6 border border-cyber-dark/30 bg-cyber-dark/5 rounded-sm">
+                            <p className="text-[9px] text-gray-600 font-mono uppercase leading-relaxed font-bold">
+                                {">"}_ CONSOLA_ESTADO:<br />
+                                <span className="text-cyber-green">SEGURIDAD_ACTIVA</span><br />
+                                <span className="text-cyber-cyan">MODO_EDICIÓN_VIVO</span>
+                            </p>
+                        </div>
+                    </div>
                 </aside>
 
                 <div className="lg:col-span-3">
@@ -309,32 +359,30 @@ const Admin: React.FC = () => {
                                     <Plus size={18} /> NUEVO_PROYECTO
                                 </button>
                             </div>
-                            <div className="grid gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
                                 {projects.map(p => (
-                                    <CyberCard key={p.id} className="!p-4 bg-cyber-panel/20 border-cyber-dark group hover:border-cyber-purple/50 transition-all">
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-6">
-                                                <div className="w-16 h-16 bg-black border border-cyber-dark overflow-hidden flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
-                                                    {p.images?.[0] ? <img src={p.images[0].url} className="w-full h-full object-cover" /> : <Layers size={24} className="text-gray-800" />}
-                                                </div>
-                                                <div>
-                                                    <h4 className="font-bold text-lg text-white group-hover:text-cyber-cyan transition-colors">{p.title}</h4>
-                                                    <div className="flex gap-3 text-[10px] font-mono uppercase text-gray-500 italic">
-                                                        <span className="text-cyber-green">{p.category}</span>
-                                                        <span className="text-cyber-purple">{(p.stack || []).join(' ・ ')}</span>
-                                                    </div>
-                                                </div>
+                                    <div key={p.id} className="group relative bg-cyber-panel/20 border border-cyber-dark hover:border-cyber-cyan/50 transition-all duration-300">
+                                        <div className="h-40 overflow-hidden bg-black relative">
+                                            {p.images?.[0] ?
+                                                <img src={p.images[0].url} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" /> :
+                                                <div className="w-full h-full flex items-center justify-center bg-cyber-dark/10"><Layers size={32} className="text-gray-800" /></div>
+                                            }
+                                            <div className="absolute top-2 right-2 bg-cyber-black/80 px-2 py-0.5 text-[9px] font-mono text-cyber-cyan border border-cyber-cyan/30">
+                                                {p.category}
                                             </div>
-                                            <div className="flex gap-3">
-                                                <button onClick={() => { setEditingProject(p); setShowProjectModal(true); }} className="p-2 bg-cyber-dark/50 text-gray-400 hover:text-cyber-cyan border border-transparent hover:border-cyber-cyan/30 rounded-sm">
-                                                    <Edit2 size={18} />
+                                        </div>
+                                        <div className="p-5 space-y-4">
+                                            <h4 className="font-display font-bold text-white group-hover:text-cyber-cyan transition-colors truncate">{p.title}</h4>
+                                            <div className="flex gap-2">
+                                                <button onClick={() => { setEditingProject(p); setShowProjectModal(true); }} className="flex-1 py-2 bg-cyber-cyan/5 border border-cyber-cyan/20 text-cyber-cyan text-[10px] font-mono uppercase hover:bg-cyber-cyan hover:text-black transition-all">
+                                                    EDITAR
                                                 </button>
-                                                <button onClick={() => handleDeleteProject(p.id)} className="p-2 bg-cyber-dark/50 text-gray-400 hover:text-red-500 border border-transparent hover:border-red-500/30 rounded-sm">
-                                                    <Trash2 size={18} />
+                                                <button onClick={() => handleDeleteProject(p.id)} className="p-2 border border-red-500/20 text-red-500/50 hover:text-red-500 hover:border-red-500 transition-all">
+                                                    <Trash2 size={14} />
                                                 </button>
                                             </div>
                                         </div>
-                                    </CyberCard>
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -344,32 +392,36 @@ const Admin: React.FC = () => {
                     {activeTab === 'profile' && profile && (
                         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
                             <form onSubmit={saveProfile} className="space-y-8">
-                                <section className="space-y-6 bg-cyber-panel/10 p-6 border border-cyber-dark">
+                                <section className="space-y-6 bg-cyber-panel/10 p-4 sm:p-8 border border-cyber-dark">
                                     <SectionHeader title="Identidad_Global" subtitle="Configuración de cabecera y visión" />
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         <FormField label="Nombre_Completo" name="name" defaultValue={profile.name} />
                                         <FormField label="Rol_Profesional" name="role" defaultValue={profile.role} />
-                                        <FormField label="Manifiesto_Hack" name="manifesto" defaultValue={profile.manifesto} />
+                                        <div className="sm:col-span-2">
+                                            <FormField label="Manifiesto_Hack" name="manifesto" defaultValue={profile.manifesto} />
+                                        </div>
                                         <FormField label="Ubicación_Base" name="location" defaultValue={profile.location} />
                                         <FormField label="Estado_Actual" name="status" defaultValue={profile.status} />
-                                        <FormField label="Avatar_Link" name="profileImage" defaultValue={profile.profileImage} />
+                                        <div className="sm:col-span-2">
+                                            <FormField label="Avatar_Link" name="profileImage" defaultValue={profile.profileImage} />
+                                        </div>
                                     </div>
                                     <div className="pt-4 flex justify-end">
-                                        <button className="bg-cyber-purple text-white px-8 py-3 font-mono font-bold text-sm hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 shadow-[0_0_15px_rgba(188,19,254,0.3)]">
+                                        <button className="w-full sm:w-auto bg-cyber-purple text-white px-8 py-3 font-mono font-bold text-xs hover:bg-white hover:text-black transition-all shadow-[0_0_15px_rgba(188,19,254,0.3)]">
                                             <Save size={18} className="inline mr-2" /> SINCRONIZAR_PERFIL
                                         </button>
                                     </div>
                                 </section>
 
-                                <section className="space-y-6 bg-cyber-panel/10 p-6 border border-cyber-dark">
+                                <section className="space-y-6 bg-cyber-panel/10 p-4 sm:p-8 border border-cyber-dark">
                                     <SectionHeader title="Sobre_Mí" subtitle="Contenido narrativo del portafolio" />
                                     <div className="space-y-4">
                                         <FormField label="Título_Sección" name="aboutTitle" defaultValue={profile.aboutTitle} />
                                         <div className="space-y-1">
                                             <label className="text-[10px] font-mono text-cyber-purple uppercase ml-1 tracking-tighter">Descripción_Perfil (Extensa)</label>
-                                            <textarea name="aboutDescription" defaultValue={profile.aboutDescription} rows={5} className="w-full bg-black border border-cyber-dark p-4 text-sm text-gray-300 focus:border-cyber-purple outline-none font-mono leading-relaxed"></textarea>
+                                            <textarea name="aboutDescription" defaultValue={profile.aboutDescription} rows={8} className="w-full bg-black border border-cyber-dark p-4 text-sm text-gray-300 focus:border-cyber-purple outline-none font-mono leading-relaxed"></textarea>
                                         </div>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                             <FormField label="Nivel_Inglés" name="englishLevel" defaultValue={profile.englishLevel} />
                                             <FormField label="Estudiando_Ahora" name="currentlyLearning" defaultValue={profile.currentlyLearning} />
                                         </div>
