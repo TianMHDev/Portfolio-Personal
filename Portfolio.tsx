@@ -324,7 +324,7 @@ function Portfolio() {
         <section id="contact" className="py-24 px-6 relative overflow-hidden">
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 uppercase">INICIAR CONEXIÓN</h2>
-            <p className="text-gray-400 mb-12 max-w-lg mx-auto font-mono text-xs tracking-widest">>> LISTO PARA INTEGRARME A EQUIPOS DE ALTO RENDIMIENTO</p>
+            <p className="text-gray-400 mb-12 max-w-lg mx-auto font-mono text-xs tracking-widest">{">>>"} LISTO PARA INTEGRARME A EQUIPOS DE ALTO RENDIMIENTO</p>
             <div className="max-w-2xl mx-auto">
               <CyberCard className="!p-8">
                 <form onSubmit={async (e) => {
