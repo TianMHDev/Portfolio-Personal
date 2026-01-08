@@ -113,7 +113,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
               <div className="space-y-2">
                 <h4 className="text-cyber-green font-mono text-xs uppercase tracking-[0.2em] opacity-100 flex items-center gap-2 font-bold">
                   <span className="w-1.5 h-1.5 bg-cyber-green rounded-full shadow-[0_0_5px_#0aff60]"></span>
-                  Problem
+                  Problema
                 </h4>
                 <p className="text-gray-200 font-body leading-relaxed text-sm md:text-base border-l-2 border-cyber-green/30 pl-4">
                   {project.problem}
@@ -123,7 +123,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
               <div className="space-y-2">
                 <h4 className="text-cyber-cyan font-mono text-xs uppercase tracking-[0.2em] opacity-100 flex items-center gap-2 font-bold">
                   <span className="w-1.5 h-1.5 bg-cyber-cyan rounded-full shadow-[0_0_5px_#00f3ff]"></span>
-                  Solution
+                  Solución Técnica
                 </h4>
                 <div className="text-gray-200 font-body leading-relaxed text-sm md:text-base space-y-4">
                   <p>{project.description}</p>
@@ -136,7 +136,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
               <div className="space-y-2 pb-4">
                 <h4 className="text-cyber-purple font-mono text-xs uppercase tracking-[0.2em] opacity-100 flex items-center gap-2 font-bold">
                   <span className="w-1.5 h-1.5 bg-cyber-purple rounded-full shadow-[0_0_5px_#bc13fe]"></span>
-                  Features
+                  Características Clave
                 </h4>
                 <ul className="grid grid-cols-1 gap-2">
                   {(project.features || []).map((feature, idx) => (

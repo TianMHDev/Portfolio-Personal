@@ -279,7 +279,7 @@ function Portfolio() {
                 <div key={project.id} onClick={() => setSelectedProject(project)} className="group cursor-pointer relative bg-cyber-panel border border-cyber-dark hover:border-cyber-cyan/50 transition-all duration-300 hover:transform hover:-translate-y-1 overflow-hidden">
                   <div className="h-48 overflow-hidden bg-black relative">
                     <img src={project.images?.[0]?.url} alt={project.title} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" />
-                    <div className="absolute top-0 right-0 bg-cyber-black/80 px-3 py-1 text-xs font-mono text-cyber-cyan border-bl border-l border-b border-cyber-cyan/30">
+                    <div className="absolute top-0 right-0 bg-cyber-black/80 px-3 py-1 text-xs font-mono text-cyber-cyan border-l border-b border-cyber-cyan/30">
                       {project.version ? `v${project.version}` : `v1.0.0`}
                     </div>
                   </div>

@@ -1,4 +1,6 @@
 quarkus:
+  rest:
+    path: /api
   hibernate-orm:
     log:
       sql: true
