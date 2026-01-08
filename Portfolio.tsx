@@ -190,7 +190,7 @@ function Portfolio() {
 
             <div className="flex flex-col md:flex-row gap-4 justify-center mt-12">
               <button onClick={() => scrollToSection('projects')} className="px-8 py-4 bg-cyber-cyan/10 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-display font-bold tracking-widest uppercase transition-all duration-300 clip-path-slant">PROYECTOS</button>
-              <a href="cv/cv-Sebastian-Marriagapdf.pdf" target="_blank" className="px-8 py-4 bg-cyber-purple/10 border border-cyber-purple text-cyber-purple hover:bg-cyber-purple hover:text-white font-display font-bold tracking-widest uppercase transition-all duration-300 clip-path-slant">DESCARGAR CV</a>
+              <a href="/cv/cv-Sebastian-Marriagapdf.pdf" target="_blank" className="px-8 py-4 bg-cyber-purple/10 border border-cyber-purple text-cyber-purple hover:bg-cyber-purple hover:text-white font-display font-bold tracking-widest uppercase transition-all duration-300 clip-path-slant">DESCARGAR CV</a>
               <button onClick={() => scrollToSection('contact')} className="px-8 py-4 bg-cyber-green/10 border border-cyber-green text-cyber-green hover:bg-cyber-green hover:text-black font-display font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_15px_rgba(10,255,96,0.1)] hover:shadow-[0_0_20px_rgba(10,255,96,0.3)]">CONTACTAR</button>
             </div>
           </div>

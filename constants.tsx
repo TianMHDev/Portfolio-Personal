@@ -83,7 +83,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/TianMHDev/OpenBook.git",
     liveUrl: "https://openbook-7anq.onrender.com/",
     images: [
-      { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458313751940829265/Captura_desde_2026-01-06_22-16-49.png?ex=695f3004&is=695dde84&hm=1a3b8e3fd04b82052e1443de0fe1821b3f7c7887d2dfce903396bd3e9f0b2c73&", caption: "Home", type: "screenshot" },
+      { url: "/projects/open-book.png", caption: "Home", type: "screenshot" },
       { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458313752356323442/Captura_desde_2026-01-06_22-17-24.png?ex=695f3004&is=695dde84&hm=0ac622c83d2ab08805ce8d0bc0b0c4f7d2a1ec22e0187ca03cd503d3adfe218a&", caption: "Auth", type: "screenshot" },
       { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458313752876286104/Captura_desde_2026-01-06_22-17-35.png?ex=695f3004&is=695dde84&hm=28ecfe6766d299aa7ab0734948e9d9baa32b2f4b8ae52fe0c8ada6d2eeb6e47d&", caption: "Registro", type: "screenshot" }
     ],
@@ -106,7 +106,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/TianMHDev/Sistema-de-Gesti-n-de-Proyectos-y-Tareas.git",
     liveUrl: "https://sistema-de-gesti-n-de-proyectos-y-t.vercel.app/",
     images: [
-      { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458315563108405289/Captura_desde_2026-01-06_23-23-59.png?ex=695f31b4&is=695de034&hm=88f0fe672397b0cfe81687be15107a6e009bb13c8ab394d1093cec9c4336c685&", caption: "Dashboard", type: "screenshot" },
+      { url: "/projects/task-management.png", caption: "Dashboard", type: "screenshot" },
       { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458315562773123173/Captura_desde_2026-01-06_23-24-12.png?ex=695f31b4&is=695de034&hm=7324686d9c44156aa09a1c2b03bb95e1d2d5975083225c92121a8568ece0038b&", caption: "Tareas", type: "screenshot" },
       { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458317105635262620/image.png?ex=695f3324&is=695de1a4&hm=bea35d92ef67d87f65d67f7364f01cdb6441c998162020fbdece5fe1e2480a3d", caption: "Nuevo Proyecto", type: "screenshot" }
     ],
@@ -129,7 +129,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Vortex-Incidents/vortex-frontend-react.git",
     liveUrl: "https://vortex-frontend-react.vercel.app/",
     images: [
-      { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458336768829952043/Captura_desde_2026-01-07_00-46-29.png?ex=695f4574&is=695df3f4&hm=030def354ef6f8fd057c5626ec77e5f81b7854c7cfaa1c7b44ad599d059b92ce&", caption: "Home", type: "screenshot" },
+      { url: "/projects/vortex-incident.png", caption: "Home", type: "screenshot" },
       { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458337661264724080/Captura_desde_2026-01-07_00-52-21.png?ex=695f4649&is=695df4c9&hm=d8a783c98a06dccd5ea804a27fcce6574abf14938dfc234bb6ee7bc08c3dd42e&", caption: "Admin Panel", type: "screenshot" },
       { url: "https://cdn.discordapp.com/attachments/1365053451242835989/1458337662271357019/Captura_desde_2026-01-07_00-52-41.png?ex=695f4649&is=695df4c9&hm=d7df08f6750a336d013b2fb90a0d98cef07aa820a014c863d32736d49d4f4dbb&", caption: "User Dashboard", type: "screenshot" }
     ],
