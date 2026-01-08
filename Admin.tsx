@@ -247,15 +247,15 @@ const Admin: React.FC = () => {
                     </div>
                     <form onSubmit={handleLogin} className="space-y-6">
                         <div>
-                            <label className="block text-[10px] font-mono text-gray-500 uppercase mb-2 ml-1">Terminal_ID</label>
-                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required className="w-full bg-black border border-cyber-dark p-3 text-cyber-cyan focus:border-cyber-cyan outline-none font-mono" />
+                            <label className="block text-xs sm:text-sm font-mono text-gray-500 uppercase mb-2 ml-1">Terminal_ID</label>
+                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required className="w-full bg-black border border-cyber-dark p-4 text-cyber-cyan focus:border-cyber-cyan outline-none font-mono text-sm sm:text-base" />
                         </div>
                         <div>
-                            <label className="block text-[10px] font-mono text-gray-500 uppercase mb-2 ml-1">Código_Encriptado</label>
-                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="w-full bg-black border border-cyber-dark p-3 text-cyber-cyan focus:border-cyber-cyan outline-none font-mono" />
+                            <label className="block text-xs sm:text-sm font-mono text-gray-500 uppercase mb-2 ml-1">Código_Encriptado</label>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className="w-full bg-black border border-cyber-dark p-4 text-cyber-cyan focus:border-cyber-cyan outline-none font-mono text-sm sm:text-base" />
                         </div>
-                        {error && <p className="text-red-500 font-mono text-[10px] border border-red-500/30 p-2 bg-red-500/10 italic text-center uppercase">{error}</p>}
-                        <button disabled={loading} className="w-full bg-cyber-cyan text-black font-bold p-3 uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,243,255,0.2)]">
+                        {error && <p className="text-red-500 font-mono text-xs border border-red-500/30 p-3 bg-red-500/10 italic text-center uppercase">{error}</p>}
+                        <button disabled={loading} className="w-full bg-cyber-cyan text-black font-bold p-4 uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(0,243,255,0.2)] text-sm sm:text-base">
                             {loading ? 'AUTENTICANDO...' : 'Sincronizar_Conexión'}
                         </button>
                     </form>
@@ -275,17 +275,17 @@ const Admin: React.FC = () => {
                             <Terminal size={18} className="text-cyber-cyan animate-pulse" />
                         </div>
                         <div className="hidden sm:block">
-                            <h1 className="text-xl font-display font-black tracking-tighter uppercase italic">PANEL_ADMIN</h1>
-                            <p className="text-[9px] text-cyber-green font-mono uppercase tracking-widest">EN_LINEA // ACCESO_NIVEL_1</p>
+                            <h1 className="text-xl sm:text-2xl lg:text-3xl font-display font-black tracking-tighter uppercase italic">PANEL_ADMIN</h1>
+                            <p className="text-[10px] lg:text-xs text-cyber-green font-mono uppercase tracking-[0.2em]">EN_LINEA // ACCESO_NIVEL_1</p>
                         </div>
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <div className="hidden md:flex items-center gap-6 mr-6 border-r border-cyber-dark pr-6">
-                            <a href="/" target="_blank" className="text-[10px] font-mono text-gray-400 hover:text-cyber-cyan flex items-center gap-1 transition-all uppercase tracking-widest">
-                                <ExternalLink size={12} /> VER_SITE
+                        <div className="hidden md:flex items-center gap-8 mr-6 border-r border-cyber-dark pr-6">
+                            <a href="/" target="_blank" className="text-xs lg:text-sm font-mono text-gray-400 hover:text-cyber-cyan flex items-center gap-1 transition-all uppercase tracking-widest">
+                                <ExternalLink size={14} /> VER_SITE
                             </a>
-                            <button onClick={handleLogout} className="text-[10px] font-mono text-gray-500 hover:text-red-500 transition-all uppercase tracking-widest">
+                            <button onClick={handleLogout} className="text-xs lg:text-sm font-mono text-gray-500 hover:text-red-500 transition-all uppercase tracking-widest">
                                 [DESCONECTAR]
                             </button>
                         </div>
@@ -313,16 +313,16 @@ const Admin: React.FC = () => {
                             <X size={24} />
                         </button>
                     </div>
-                    <nav className="flex flex-col gap-6">
-                        <button onClick={() => { setActiveTab('projects'); setMobileMenuOpen(false); }} className={`p-6 border text-left font-mono ${activeTab === 'projects' ? 'border-cyber-cyan text-cyber-cyan bg-cyber-cyan/5' : 'border-cyber-dark text-gray-500'}`}>
-                            GESTIÓN_PROYECTOS
+                    <nav className="flex flex-col gap-6 pt-10">
+                        <button onClick={() => { setActiveTab('projects'); setMobileMenuOpen(false); }} className={`p-8 border text-left font-mono text-lg ${activeTab === 'projects' ? 'border-cyber-cyan text-cyber-cyan bg-cyber-cyan/5' : 'border-cyber-dark text-gray-500'}`}>
+                            {">"} GESTIÓN_PROYECTOS
                         </button>
-                        <button onClick={() => { setActiveTab('profile'); setMobileMenuOpen(false); }} className={`p-6 border text-left font-mono ${activeTab === 'profile' ? 'border-cyber-purple text-cyber-purple bg-cyber-purple/5' : 'border-cyber-dark text-gray-500'}`}>
-                            MI_PERFIL_GLOBAL
+                        <button onClick={() => { setActiveTab('profile'); setMobileMenuOpen(false); }} className={`p-8 border text-left font-mono text-lg ${activeTab === 'profile' ? 'border-cyber-purple text-cyber-purple bg-cyber-purple/5' : 'border-cyber-dark text-gray-500'}`}>
+                            {">"} MI_PERFIL_GLOBAL
                         </button>
-                        <hr className="border-cyber-dark my-4" />
-                        <button onClick={handleLogout} className="p-6 border border-red-500/30 text-red-500 text-left font-mono">
-                            LOGOUT_DEL_SISTEMA
+                        <hr className="border-cyber-dark my-6" />
+                        <button onClick={handleLogout} className="p-8 border border-red-500/30 text-red-500 text-left font-mono text-lg">
+                            [ LOGOUT_DEL_SISTEMA ]
                         </button>
                     </nav>
                 </div>
@@ -332,15 +332,15 @@ const Admin: React.FC = () => {
                 {/* SIDEBAR - DESKTOP ONLY */}
                 <aside className="hidden lg:block space-y-4">
                     <div className="sticky top-32">
-                        <button onClick={() => setActiveTab('projects')} className={`w-full flex items-center justify-between p-5 border font-mono text-xs tracking-widest transition-all ${activeTab === 'projects' ? 'bg-cyber-cyan/10 border-cyber-cyan text-cyber-cyan' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
-                            <div className="flex items-center gap-3"><Layers size={18} /> GESTIÓN_PROYECTOS</div>
+                        <button onClick={() => setActiveTab('projects')} className={`w-full flex items-center justify-between p-6 border font-mono text-sm tracking-widest transition-all ${activeTab === 'projects' ? 'bg-cyber-cyan/10 border-cyber-cyan text-cyber-cyan shadow-[0_0_20px_rgba(0,243,255,0.1)]' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
+                            <div className="flex items-center gap-3"><Layers size={20} /> GESTIÓN_PROYECTOS</div>
                         </button>
-                        <button onClick={() => setActiveTab('profile')} className={`w-full flex items-center justify-between p-5 border font-mono text-xs tracking-widest mt-3 transition-all ${activeTab === 'profile' ? 'bg-cyber-purple/10 border-cyber-purple text-cyber-purple' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
-                            <div className="flex items-center gap-3"><User size={18} /> MI_PERFIL_GLOBAL</div>
+                        <button onClick={() => setActiveTab('profile')} className={`w-full flex items-center justify-between p-6 border font-mono text-sm tracking-widest mt-4 transition-all ${activeTab === 'profile' ? 'bg-cyber-purple/10 border-cyber-purple text-cyber-purple shadow-[0_0_20px_rgba(188,19,254,0.1)]' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
+                            <div className="flex items-center gap-3"><User size={20} /> MI_PERFIL_GLOBAL</div>
                         </button>
 
-                        <div className="mt-12 p-6 border border-cyber-dark/30 bg-cyber-dark/5 rounded-sm">
-                            <p className="text-[9px] text-gray-600 font-mono uppercase leading-relaxed font-bold">
+                        <div className="mt-16 p-8 border border-cyber-dark/30 bg-cyber-dark/5 rounded-sm">
+                            <p className="text-xs text-gray-600 font-mono uppercase leading-relaxed font-bold tracking-wider">
                                 {">"}_ CONSOLA_ESTADO:<br />
                                 <span className="text-cyber-green">SEGURIDAD_ACTIVA</span><br />
                                 <span className="text-cyber-cyan">MODO_EDICIÓN_VIVO</span>
@@ -355,8 +355,8 @@ const Admin: React.FC = () => {
                         <div className="space-y-6">
                             <div className="flex flex-col sm:row sm:justify-between sm:items-center gap-4">
                                 <SectionHeader title="Portafolio_Técnico" subtitle="Capa de Persistencia: Proyectos" />
-                                <button onClick={() => { setEditingProject(null); setShowProjectModal(true); }} className="w-full sm:w-auto bg-cyber-cyan text-black px-6 py-2 font-mono text-xs font-bold flex items-center justify-center gap-2 hover:bg-white transition-all transform hover:-translate-y-1">
-                                    <Plus size={18} /> NUEVO_PROYECTO
+                                <button onClick={() => { setEditingProject(null); setShowProjectModal(true); }} className="w-full sm:w-auto bg-cyber-cyan text-black px-8 py-3 font-mono text-sm font-bold flex items-center justify-center gap-3 hover:bg-white transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(0,243,255,0.2)]">
+                                    <Plus size={20} /> NUEVO_PROYECTO
                                 </button>
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -371,14 +371,14 @@ const Admin: React.FC = () => {
                                                 {p.category}
                                             </div>
                                         </div>
-                                        <div className="p-5 space-y-4">
-                                            <h4 className="font-display font-bold text-white group-hover:text-cyber-cyan transition-colors truncate">{p.title}</h4>
-                                            <div className="flex gap-2">
-                                                <button onClick={() => { setEditingProject(p); setShowProjectModal(true); }} className="flex-1 py-2 bg-cyber-cyan/5 border border-cyber-cyan/20 text-cyber-cyan text-[10px] font-mono uppercase hover:bg-cyber-cyan hover:text-black transition-all">
+                                        <div className="p-6 space-y-6">
+                                            <h4 className="font-display font-bold text-lg lg:text-xl text-white group-hover:text-cyber-cyan transition-colors truncate">{p.title}</h4>
+                                            <div className="flex gap-3">
+                                                <button onClick={() => { setEditingProject(p); setShowProjectModal(true); }} className="flex-1 py-3 bg-cyber-cyan/5 border border-cyber-cyan/20 text-cyber-cyan text-xs lg:text-sm font-mono uppercase font-bold hover:bg-cyber-cyan hover:text-black transition-all">
                                                     EDITAR
                                                 </button>
-                                                <button onClick={() => handleDeleteProject(p.id)} className="p-2 border border-red-500/20 text-red-500/50 hover:text-red-500 hover:border-red-500 transition-all">
-                                                    <Trash2 size={14} />
+                                                <button onClick={() => handleDeleteProject(p.id)} className="p-3 border border-red-500/20 text-red-500/50 hover:text-red-500 hover:border-red-500 transition-all">
+                                                    <Trash2 size={18} />
                                                 </button>
                                             </div>
                                         </div>
@@ -599,23 +599,23 @@ const Admin: React.FC = () => {
 // --- COMPONENTES AUXILIARES ---
 
 const SectionHeader = ({ title, subtitle }: { title: string; subtitle: string }) => (
-    <div>
-        <h3 className="text-xl font-display font-black text-white uppercase italic tracking-tighter">{title}</h3>
-        <p className="text-[10px] font-mono text-gray-600 uppercase tracking-widest">{subtitle}</p>
+    <div className="border-l-4 border-cyber-cyan pl-4 py-2 my-2">
+        <h3 className="text-xl sm:text-2xl lg:text-3xl font-display font-black text-white uppercase italic tracking-tighter">{title}</h3>
+        <p className="text-xs lg:text-sm font-mono text-gray-600 uppercase tracking-widest mt-1">{subtitle}</p>
     </div>
 );
 
 const FormField = ({ label, name, defaultValue, placeholder, type = "text", required = false }: any) => (
-    <div className="space-y-1">
-        <label className="text-[10px] font-mono text-cyber-cyan uppercase ml-1 tracking-tighter">{label}</label>
-        <input name={name} type={type} defaultValue={defaultValue} placeholder={placeholder} required={required} className="w-full bg-black border border-cyber-dark p-3 text-sm text-gray-300 focus:border-cyber-cyan outline-none font-mono transition-colors" />
+    <div className="space-y-2">
+        <label className="text-xs lg:text-sm font-mono text-cyber-cyan uppercase ml-1 tracking-widest font-bold">{label}</label>
+        <input name={name} type={type} defaultValue={defaultValue} placeholder={placeholder} required={required} className="w-full bg-black border border-cyber-dark p-4 text-sm lg:text-base text-gray-300 focus:border-cyber-cyan outline-none font-mono transition-colors" />
     </div>
 );
 
 const FormTextarea = ({ label, name, defaultValue, rows = 2, required = false }: any) => (
-    <div className="space-y-1">
-        <label className="text-[10px] font-mono text-cyber-cyan uppercase ml-1 tracking-tighter">{label}</label>
-        <textarea name={name} defaultValue={defaultValue} rows={rows} required={required} className="w-full bg-black border border-cyber-dark p-3 text-sm text-gray-300 focus:border-cyber-cyan outline-none font-mono transition-colors"></textarea>
+    <div className="space-y-2">
+        <label className="text-xs lg:text-sm font-mono text-cyber-cyan uppercase ml-1 tracking-widest font-bold">{label}</label>
+        <textarea name={name} defaultValue={defaultValue} rows={rows} required={required} className="w-full bg-black border border-cyber-dark p-4 text-sm lg:text-base text-gray-300 focus:border-cyber-cyan outline-none font-mono transition-colors leading-relaxed"></textarea>
     </div>
 );
 
