@@ -81,7 +81,7 @@ public class ContactService implements ContactUseCase {
                     contact.name(), contact.email(), contact.message().replace("\n", "<br/>"));
 
             String jsonBody = String.format(
-                    "{\"from\": \"onboarding@resend.dev\", \"to\": \"hado6529@gmail.com\", \"subject\": \"🚀 NUEVO_CONTACTO: %s\", \"html\": \"%s\"}",
+                    "{\"from\": \"onboarding@resend.dev\", \"to\": \"sebastianmarriagahoyos@gmail.com\", \"subject\": \"🚀 NUEVO_CONTACTO: %s\", \"html\": \"%s\"}",
                     contact.name(), htmlContent.replace("\"", "\\\""));
 
             HttpRequest request = HttpRequest.newBuilder()
