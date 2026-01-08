@@ -48,41 +48,64 @@ public class ContactService implements ContactUseCase {
             HttpClient client = HttpClient.newHttpClient();
 
             String htmlContent = String.format(
-                    "<div style='background-color: #050a10; padding: 40px; font-family: sans-serif; color: #ffffff; border: 1px solid #1a2233;'>"
+                    "<div style='background-color: #02040a; padding: 20px; font-family: \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; color: #ffffff;'>"
                             +
-                            "  <div style='max-width: 600px; margin: 0 auto;'>" +
-                            "    <div style='border-bottom: 2px solid #00f3ff; padding-bottom: 10px; margin-bottom: 30px;'>"
+                            "  <table align='center' border='0' cellpadding='0' cellspacing='0' width='100%%' style='max-width: 600px; background-color: #050a10; border: 1px solid #1a2233; border-collapse: collapse;'>"
                             +
-                            "      <h1 style='color: #00f3ff; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; margin: 0;'>SYSTEM_NOTIFICATION</h1>"
+                            "    <tr>" +
+                            "      <td style='padding: 30px 40px; border-bottom: 2px solid #00f3ff; background: linear-gradient(90deg, #050a10 0%%, #0a111c 100%%);'>"
                             +
-                            "      <p style='color: #bc13fe; font-size: 10px; margin: 5px 0 0 0; font-family: monospace;'>[ INCOMING_DATA_PACKET ]</p>"
+                            "        <h1 style='color: #00f3ff; font-size: 18px; text-transform: uppercase; letter-spacing: 4px; margin: 0; font-weight: 900;'>SYSTEM_DECRYPT</h1>"
                             +
-                            "    </div>" +
-                            "    <div style='background: #0a111c; border-left: 4px solid #00f3ff; padding: 25px; margin-bottom: 20px; box-shadow: 0 0 20px rgba(0, 243, 255, 0.05);'>"
+                            "        <div style='height: 2px; width: 40px; background-color: #bc13fe; margin-top: 8px;'></div>"
                             +
-                            "      <p style='margin: 0 0 10px 0; font-size: 12px; color: #8892b0; text-transform: uppercase;'>IDENTIDAD_USER</p>"
+                            "      </td>" +
+                            "    </tr>" +
+                            "    <tr>" +
+                            "      <td style='padding: 40px;'>" +
+                            "        <p style='color: #8892b0; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px;'>[ CANAL_DE_ENTRADA_ACTIVO ]</p>"
                             +
-                            "      <h2 style='margin: 0; font-size: 20px; color: #e0f7fa;'>%s</h2>" +
-                            "      <p style='margin: 5px 0 0 0; font-size: 14px; color: #00f3ff;'>%s</p>" +
-                            "    </div>" +
-                            "    <div style='background: #0a111c; border-left: 4px solid #bc13fe; padding: 25px; min-height: 100px;'>"
+                            "        <table width='100%%' style='margin-bottom: 30px;'>" +
+                            "          <tr>" +
+                            "            <td style='padding: 20px; background-color: #0a111c; border-left: 3px solid #00f3ff;'>"
                             +
-                            "      <p style='margin: 0 0 10px 0; font-size: 12px; color: #8892b0; text-transform: uppercase;'>MENSAJE_CIFRADO</p>"
+                            "              <div style='color: #00f3ff; font-size: 10px; text-transform: uppercase; margin-bottom: 5px; font-weight: bold;'>ORIGEN_DATOS</div>"
                             +
-                            "      <div style='color: #e0f7fa; line-height: 1.6; font-size: 15px;'>%s</div>" +
-                            "    </div>" +
-                            "    <div style='margin-top: 30px; text-align: center; border-top: 1px solid #1a2233; padding-top: 20px;'>"
+                            "              <div style='font-size: 20px; color: #ffffff; font-weight: bold;'>%s</div>" +
+                            "              <div style='font-size: 13px; color: #8892b0; margin-top: 4px;'>%s</div>" +
+                            "            </td>" +
+                            "          </tr>" +
+                            "        </table>" +
+                            "        <div style='color: #bc13fe; font-size: 10px; text-transform: uppercase; margin-bottom: 10px; font-weight: bold;'>CONTENIDO_DEL_PAQUETE</div>"
                             +
-                            "      <p style='font-size: 10px; color: #4b5563; font-family: monospace;'>© 2026 TIAN_MARRIAGA | BACKEND_DEVELOPER | SYSTEM_V1.5.0</p>"
+                            "        <div style='padding: 25px; background-color: #0d1624; border: 1px solid #1a2233; color: #e0f7fa; line-height: 1.8; font-size: 15px; border-radius: 4px;'>"
                             +
-                            "    </div>" +
-                            "  </div>" +
+                            "          %s" +
+                            "        </div>" +
+                            "        <table width='100%%' style='margin-top: 30px;'>" +
+                            "          <tr>" +
+                            "            <td>" +
+                            "              <div style='display: inline-block; padding: 8px 15px; background-color: rgba(0, 243, 255, 0.1); border: 1px solid #00f3ff; color: #00f3ff; font-size: 10px; font-weight: bold; border-radius: 2px;'>STATUS: ANALIZADO</div>"
+                            +
+                            "            </td>" +
+                            "          </tr>" +
+                            "        </table>" +
+                            "      </td>" +
+                            "    </tr>" +
+                            "    <tr>" +
+                            "      <td style='padding: 20px 40px; background-color: #02040a; border-top: 1px solid #1a2233; text-align: center;'>"
+                            +
+                            "        <p style='font-size: 10px; color: #4b5563; font-family: monospace; margin: 0;'>PROTOCOLO_DE_COMUNICACIÓN // V1.5.0 // TIAN_RESOURCES</p>"
+                            +
+                            "      </td>" +
+                            "    </tr>" +
+                            "  </table>" +
                             "</div>",
                     contact.name(), contact.email(), contact.message().replace("\n", "<br/>"));
 
             String jsonBody = String.format(
-                    "{\"from\": \"onboarding@resend.dev\", \"to\": \"sebastianmarriagahoyos@gmail.com\", \"subject\": \"🚀 NUEVO_CONTACTO: %s\", \"html\": \"%s\"}",
-                    contact.name(), htmlContent.replace("\"", "\\\""));
+                    "{\"from\": \"onboarding@resend.dev\", \"to\": \"sebastianmarriagahoyos@gmail.com\", \"subject\": \"🚀 NUEVO_DATOS: %s\", \"html\": \"%s\"}",
+                    contact.name(), htmlContent.replace("\"", "\\\"").replace("\n", " "));
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://api.resend.com/emails"))

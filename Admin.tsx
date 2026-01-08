@@ -266,17 +266,17 @@ const Admin: React.FC = () => {
     // --- RENDERIZADO: PANEL PRINCIPAL (AUTENTICADO) ---
     return (
         <div className="min-h-screen bg-cyber-black text-white font-body p-6 md:p-12">
-            <header className="max-w-7xl mx-auto flex items-center justify-between mb-12 border-b border-cyber-dark pb-6">
+            <header className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between mb-12 border-b border-cyber-dark pb-6 gap-6 text-center sm:text-left">
                 <div className="flex items-center gap-3">
-                    <div className="p-2 border border-cyber-cyan rounded-sm">
+                    <div className="p-2 border border-cyber-cyan rounded-sm shrink-0">
                         <Terminal className="text-cyber-cyan animate-pulse" />
                     </div>
                     <div>
-                        <h1 className="text-2xl font-display font-black tracking-tighter uppercase italic">PANEL_DE_CONTROL</h1>
+                        <h1 className="text-xl sm:text-2xl font-display font-black tracking-tighter uppercase italic">PANEL_DE_CONTROL</h1>
                         <p className="text-[10px] text-cyber-green font-mono uppercase tracking-widest">STATUS: ADMIN_AUTORIZADO</p>
                     </div>
                 </div>
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
                     <a href="/" target="_blank" className="text-xs font-mono text-gray-400 hover:text-cyber-cyan flex items-center gap-1 transition-colors">
                         <ExternalLink size={14} /> VER_SITIO_REAL
                     </a>
@@ -287,15 +287,15 @@ const Admin: React.FC = () => {
             </header>
 
             <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8">
-                {/* NAVEGACIÓN LATERAL */}
-                <aside className="space-y-3">
-                    <button onClick={() => setActiveTab('projects')} className={`w-full flex items-center justify-between p-4 border font-mono text-sm transition-all ${activeTab === 'projects' ? 'bg-cyber-cyan/10 border-cyber-cyan text-cyber-cyan shadow-[0_0_15px_rgba(0,243,255,0.1)]' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
+                {/* NAVEGACIÓN LATERAL / SUPERIOR EN MÓVIL */}
+                <aside className="flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 scrollbar-hide">
+                    <button onClick={() => setActiveTab('projects')} className={`flex-1 shrink-0 lg:w-full flex items-center justify-between p-4 border font-mono text-xs sm:text-sm transition-all whitespace-nowrap ${activeTab === 'projects' ? 'bg-cyber-cyan/10 border-cyber-cyan text-cyber-cyan shadow-[0_0_15px_rgba(0,243,255,0.1)]' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
                         <div className="flex items-center gap-3"><Layers size={20} /> GESTIÓN_PROYECTOS</div>
-                        {activeTab === 'projects' && <div className="w-1.5 h-1.5 bg-cyber-cyan rounded-full animate-pulse"></div>}
+                        {activeTab === 'projects' && <div className="hidden sm:block w-1.5 h-1.5 bg-cyber-cyan rounded-full animate-pulse"></div>}
                     </button>
-                    <button onClick={() => setActiveTab('profile')} className={`w-full flex items-center justify-between p-4 border font-mono text-sm transition-all ${activeTab === 'profile' ? 'bg-cyber-purple/10 border-cyber-purple text-cyber-purple shadow-[0_0_15px_rgba(188,19,254,0.1)]' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
+                    <button onClick={() => setActiveTab('profile')} className={`flex-1 shrink-0 lg:w-full flex items-center justify-between p-4 border font-mono text-xs sm:text-sm transition-all whitespace-nowrap ${activeTab === 'profile' ? 'bg-cyber-purple/10 border-cyber-purple text-cyber-purple shadow-[0_0_15px_rgba(188,19,254,0.1)]' : 'bg-transparent border-cyber-dark text-gray-500 hover:bg-cyber-dark/30'}`}>
                         <div className="flex items-center gap-3"><User size={20} /> MI_PERFIL_GLOBAL</div>
-                        {activeTab === 'profile' && <div className="w-1.5 h-1.5 bg-cyber-purple rounded-full animate-pulse"></div>}
+                        {activeTab === 'profile' && <div className="hidden sm:block w-1.5 h-1.5 bg-cyber-purple rounded-full animate-pulse"></div>}
                     </button>
                 </aside>
 
@@ -303,9 +303,9 @@ const Admin: React.FC = () => {
                     {/* SECCIÓN: LISTADO DE PROYECTOS */}
                     {activeTab === 'projects' && (
                         <div className="space-y-6">
-                            <div className="flex justify-between items-center">
+                            <div className="flex flex-col sm:row sm:justify-between sm:items-center gap-4">
                                 <SectionHeader title="Portafolio_Técnico" subtitle="Capa de Persistencia: Proyectos" />
-                                <button onClick={() => { setEditingProject(null); setShowProjectModal(true); }} className="bg-cyber-cyan text-black px-6 py-2 font-mono text-xs font-bold flex items-center gap-2 hover:bg-white transition-all transform hover:-translate-y-1">
+                                <button onClick={() => { setEditingProject(null); setShowProjectModal(true); }} className="w-full sm:w-auto bg-cyber-cyan text-black px-6 py-2 font-mono text-xs font-bold flex items-center justify-center gap-2 hover:bg-white transition-all transform hover:-translate-y-1">
                                     <Plus size={18} /> NUEVO_PROYECTO
                                 </button>
                             </div>
@@ -426,12 +426,12 @@ const Admin: React.FC = () => {
             {/* MODAL: EDICIÓN DE PROYECTOS */}
             {showProjectModal && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/98 backdrop-blur-xl">
-                    <CyberCard className="w-full max-w-2xl max-h-[90vh] overflow-y-auto border-2 border-cyber-cyan/50 ring-4 ring-cyber-cyan/5">
-                        <div className="flex justify-between items-center mb-10">
-                            <h2 className="text-2xl font-display font-black text-white italic uppercase tracking-tighter">
-                                {editingProject ? 'ACTUALIZAR_REGISTRO_VORTEX' : 'INICIAR_NUEVO_RECURSO'}
+                    <CyberCard className="w-full max-w-2xl max-h-[90vh] overflow-y-scroll border-2 border-cyber-cyan/50 ring-4 ring-cyber-cyan/5 scrollbar-hide">
+                        <div className="flex justify-between items-center mb-10 sticky top-0 bg-cyber-panel/90 backdrop-blur-md z-10 p-2 md:p-0">
+                            <h2 className="text-xl md:text-2xl font-display font-black text-white italic uppercase tracking-tighter">
+                                {editingProject ? 'ACTUALIZAR_REGISTRO' : 'INICIAR_PROYECTO'}
                             </h2>
-                            <button onClick={() => setShowProjectModal(false)} className="text-gray-500 hover:text-white transition-colors"><X size={32} /></button>
+                            <button onClick={() => setShowProjectModal(false)} className="text-cyber-cyan hover:text-white transition-colors p-2"><X size={28} /></button>
                         </div>
                         <form onSubmit={saveProject} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
