@@ -8,9 +8,10 @@ quarkus:
   http:
     cors:
       enabled: true
-      origins: "*"
+      origins: "/https?:\\/\\/.*vercel\\.app/,/http:\\/\\/localhost:.*/"
       methods: GET,POST,PUT,DELETE,OPTIONS
       headers: Content-Type,Authorization
+      exposed-headers: Content-Disposition
   
   mailer:
     from: "sebastianmarriagahoyos@gmail.com"
@@ -61,13 +62,13 @@ mp:
     verify:
       issuer: https://sebastian-portfolio.com
       publickey:
-        location: publicKey.pem
+        content: ${MP_JWT_VERIFY_PUBLICKEY:MISSING}
 
 smallrye:
   jwt:
     sign:
       key:
-        location: privateKey.pem
+        content: ${SMALLRYE_JWT_SIGN_KEY:MISSING}
 
 openapi:
   info:
