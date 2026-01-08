@@ -52,7 +52,7 @@ quarkus:
       username: ${DB_USERNAME:postgres}
       password: ${DB_PASSWORD:}
       jdbc:
-        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:portfolio}
+        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:railway}
     hibernate-orm:
       database:
         generation: update
