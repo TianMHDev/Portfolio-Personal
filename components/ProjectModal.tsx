@@ -151,7 +151,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
           </div>
 
           {/* Sticky Footer: Action Buttons */}
-          <div className="flex-shrink-0 p-4 md:p-6 bg-cyber-black/90 border-t border-cyber-dark flex flex-col gap-3 z-20 pb-8 md:pb-6">
+          <div className="flex-shrink-0 p-4 sm:p-5 md:p-6 bg-cyber-black/90 border-t border-cyber-dark flex flex-col gap-3 z-20 pb-10 sm:pb-8 md:pb-6">
             <div className="flex row gap-3">
               <a
                 href={project.githubUrl}

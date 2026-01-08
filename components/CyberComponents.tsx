@@ -15,10 +15,10 @@ export const CyberCard: React.FC<CyberCardProps> = ({ children, className = "", 
       <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-cyber-cyan"></div>
       <div className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-cyber-cyan"></div>
       <div className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-cyber-cyan"></div>
-      
+
       {/* Scanline effect opacity */}
       <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.5)_50%)] bg-[length:100%_4px] opacity-10 pointer-events-none"></div>
-      
+
       {children}
     </div>
   );
@@ -30,8 +30,8 @@ interface SectionTitleProps {
 }
 
 export const SectionTitle: React.FC<SectionTitleProps> = ({ title, subtitle }) => (
-  <div className="mb-12 relative">
-    <h2 className="text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-purple tracking-wider uppercase mb-2">
+  <div className="mb-12 relative overflow-hidden">
+    <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-purple tracking-wider uppercase mb-2">
       {title}
     </h2>
     {subtitle && (
@@ -59,8 +59,8 @@ interface TechBarProps {
 
 export const TechBar: React.FC<TechBarProps> = ({ level }) => (
   <div className="h-1 w-full bg-cyber-dark mt-2 overflow-hidden">
-    <div 
-      className="h-full bg-gradient-to-r from-cyber-cyan to-cyber-purple" 
+    <div
+      className="h-full bg-gradient-to-r from-cyber-cyan to-cyber-purple"
       style={{ width: `${level}%` }}
     ></div>
   </div>

@@ -14,7 +14,9 @@ import {
   User,
   BookOpen,
   ChevronUp,
-  Loader2
+  Loader2,
+  Menu,
+  X as CloseIcon
 } from 'lucide-react';
 import { HERO_DATA, ABOUT_DATA, TECH_STACK, PROJECTS, SKILLS_MINDSET } from './constants';
 import { CyberCard, SectionTitle, Badge } from './components/CyberComponents';
@@ -40,6 +42,7 @@ function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [sendingMessage, setSendingMessage] = useState(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'warning' | 'info' } | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // --- EFECTOS: Sincronización con Backend ---
   useEffect(() => {
@@ -151,6 +154,8 @@ function Portfolio() {
             <Terminal size={20} />
             <span>DEV_TIAN</span>
           </div>
+
+          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8 font-mono text-xs tracking-widest text-gray-400">
             {['SOBRE MÍ', 'STACK', 'PROYECTOS', 'MENTALIDAD', 'CONTACTO'].map((item) => (
               <button key={item} onClick={() => {
@@ -162,6 +167,52 @@ function Portfolio() {
               </button>
             ))}
           </nav>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden p-2 text-cyber-cyan border border-cyber-cyan/30 rounded"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <Menu size={24} />
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`fixed inset-0 z-50 bg-cyber-black/95 transition-transform duration-300 transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} md:hidden`}>
+          <div className="p-6 flex flex-col h-full">
+            <div className="flex justify-between items-center mb-12">
+              <div className="flex items-center gap-2 text-cyber-cyan font-display font-bold text-xl tracking-tighter">
+                <Terminal size={20} />
+                <span>DEV_TIAN</span>
+              </div>
+              <button
+                className="p-2 text-cyber-purple border border-cyber-purple/30 rounded"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <CloseIcon size={24} />
+              </button>
+            </div>
+
+            <nav className="flex flex-col gap-8 font-mono text-xl tracking-widest text-gray-300">
+              {['SOBRE MÍ', 'STACK', 'PROYECTOS', 'MENTALIDAD', 'CONTACTO'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => {
+                    const id = item === 'SOBRE MÍ' ? 'about' : item === 'MENTALIDAD' ? 'mindset' : item === 'CONTACTO' ? 'contact' : item === 'PROYECTOS' ? 'projects' : 'stack';
+                    setMobileMenuOpen(false);
+                    setTimeout(() => scrollToSection(id), 300);
+                  }}
+                  className="text-left border-l-2 border-transparent hover:border-cyber-cyan hover:text-cyber-cyan pl-4 transition-all"
+                >
+                  {item}
+                </button>
+              ))}
+            </nav>
+
+            <div className="mt-auto pt-10 border-t border-cyber-dark">
+              <p className="text-[10px] text-gray-600 uppercase tracking-widest">ESTADO_SISTEMA: EN_LINEA</p>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -179,19 +230,19 @@ function Portfolio() {
             <p className="font-mono text-cyber-green text-sm md:text-base tracking-[0.2em] mb-4 uppercase">
               STATUS: <span className="text-cyber-cyan animate-pulse">{hero.status}</span>
             </p>
-            <h1 className="text-5xl md:text-7xl font-display font-black leading-none text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500 mb-2 filter drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] uppercase">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-display font-black leading-tight sm:leading-none text-transparent bg-clip-text bg-gradient-to-br from-white via-gray-200 to-gray-500 mb-2 filter drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] uppercase">
               {hero.name}
-              <span className="block text-3xl md:text-5xl text-cyber-cyan mt-4 font-bold drop-shadow-[0_0_15px_rgba(0,243,255,0.5)]">
+              <span className="block text-2xl sm:text-3xl md:text-5xl text-cyber-cyan mt-4 font-bold drop-shadow-[0_0_15px_rgba(0,243,255,0.5)]">
                 {hero.role}
               </span>
             </h1>
             <div className="h-px w-full max-w-md mx-auto bg-gradient-to-r from-transparent via-cyber-purple to-transparent my-6"></div>
             <p className="text-lg md:text-xl font-light text-gray-300 max-w-2xl mx-auto italic">"{hero.manifesto}"</p>
 
-            <div className="flex flex-col md:flex-row gap-4 justify-center mt-12">
-              <button onClick={() => scrollToSection('projects')} className="px-8 py-4 bg-cyber-cyan/10 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-display font-bold tracking-widest uppercase transition-all duration-300 clip-path-slant">PROYECTOS</button>
-              <a href="/cv/cv-Sebastian-Marriagapdf.pdf" download="CV-Sebastian-Marriaga.pdf" target="_blank" className="px-8 py-4 bg-cyber-purple/10 border border-cyber-purple text-cyber-purple hover:bg-cyber-purple hover:text-white font-display font-bold tracking-widest uppercase transition-all duration-300 clip-path-slant">DESCARGAR CV</a>
-              <button onClick={() => scrollToSection('contact')} className="px-8 py-4 bg-cyber-green/10 border border-cyber-green text-cyber-green hover:bg-cyber-green hover:text-black font-display font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_15px_rgba(10,255,96,0.1)] hover:shadow-[0_0_20px_rgba(10,255,96,0.3)]">CONTACTAR</button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 w-full px-4 sm:px-0 max-w-lg mx-auto sm:max-w-none">
+              <button onClick={() => scrollToSection('projects')} className="w-full sm:w-auto px-8 py-4 bg-cyber-cyan/10 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-display font-bold tracking-widest uppercase transition-all duration-300 clip-path-slant">PROYECTOS</button>
+              <a href="/cv/cv-Sebastian-Marriagapdf.pdf" download="CV-Sebastian-Marriaga.pdf" target="_blank" className="w-full sm:w-auto px-8 py-4 bg-cyber-purple/10 border border-cyber-purple text-cyber-purple hover:bg-cyber-purple hover:text-white font-display font-bold tracking-widest uppercase transition-all duration-300 clip-path-slant">DESCARGAR CV</a>
+              <button onClick={() => scrollToSection('contact')} className="w-full sm:w-auto px-8 py-4 bg-cyber-green/10 border border-cyber-green text-cyber-green hover:bg-cyber-green hover:text-black font-display font-bold tracking-widest uppercase transition-all duration-300 shadow-[0_0_15px_rgba(10,255,96,0.1)] hover:shadow-[0_0_20px_rgba(10,255,96,0.3)]">CONTACTAR</button>
             </div>
           </div>
         </section>
@@ -236,10 +287,10 @@ function Portfolio() {
                     <div className="absolute bottom-4 right-4 w-5 h-5 bg-cyber-green rounded-full border-4 border-cyber-black shadow-[0_0_15px_#0aff60] z-20"></div>
                   </div>
                   <div className="space-y-4">
-                    <h3 className="text-4xl md:text-5xl font-display font-black text-white tracking-tighter uppercase">
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-display font-black text-white tracking-tighter uppercase">
                       {hero.name.split(' ')[0]} <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-purple">{hero.name.split(' ')[1]}</span>
                     </h3>
-                    <p className="text-gray-400 font-mono text-xs md:text-sm tracking-[0.4em] uppercase opacity-70">SOFTWARE DEVELOPER</p>
+                    <p className="text-gray-400 font-mono text-[10px] sm:text-xs md:text-sm tracking-[0.4em] uppercase opacity-70">SOFTWARE DEVELOPER</p>
                   </div>
                 </div>
               </CyberCard>
