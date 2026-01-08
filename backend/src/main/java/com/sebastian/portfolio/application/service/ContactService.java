@@ -47,9 +47,42 @@ public class ContactService implements ContactUseCase {
         try {
             HttpClient client = HttpClient.newHttpClient();
 
+            String htmlContent = String.format(
+                    "<div style='background-color: #050a10; padding: 40px; font-family: sans-serif; color: #ffffff; border: 1px solid #1a2233;'>"
+                            +
+                            "  <div style='max-width: 600px; margin: 0 auto;'>" +
+                            "    <div style='border-bottom: 2px solid #00f3ff; padding-bottom: 10px; margin-bottom: 30px;'>"
+                            +
+                            "      <h1 style='color: #00f3ff; font-size: 24px; text-transform: uppercase; letter-spacing: 2px; margin: 0;'>SYSTEM_NOTIFICATION</h1>"
+                            +
+                            "      <p style='color: #bc13fe; font-size: 10px; margin: 5px 0 0 0; font-family: monospace;'>[ INCOMING_DATA_PACKET ]</p>"
+                            +
+                            "    </div>" +
+                            "    <div style='background: #0a111c; border-left: 4px solid #00f3ff; padding: 25px; margin-bottom: 20px; box-shadow: 0 0 20px rgba(0, 243, 255, 0.05);'>"
+                            +
+                            "      <p style='margin: 0 0 10px 0; font-size: 12px; color: #8892b0; text-transform: uppercase;'>IDENTIDAD_USER</p>"
+                            +
+                            "      <h2 style='margin: 0; font-size: 20px; color: #e0f7fa;'>%s</h2>" +
+                            "      <p style='margin: 5px 0 0 0; font-size: 14px; color: #00f3ff;'>%s</p>" +
+                            "    </div>" +
+                            "    <div style='background: #0a111c; border-left: 4px solid #bc13fe; padding: 25px; min-height: 100px;'>"
+                            +
+                            "      <p style='margin: 0 0 10px 0; font-size: 12px; color: #8892b0; text-transform: uppercase;'>MENSAJE_CIFRADO</p>"
+                            +
+                            "      <div style='color: #e0f7fa; line-height: 1.6; font-size: 15px;'>%s</div>" +
+                            "    </div>" +
+                            "    <div style='margin-top: 30px; text-align: center; border-top: 1px solid #1a2233; padding-top: 20px;'>"
+                            +
+                            "      <p style='font-size: 10px; color: #4b5563; font-family: monospace;'>© 2026 TIAN_MARRIAGA | BACKEND_DEVELOPER | SYSTEM_V1.5.0</p>"
+                            +
+                            "    </div>" +
+                            "  </div>" +
+                            "</div>",
+                    contact.name(), contact.email(), contact.message().replace("\n", "<br/>"));
+
             String jsonBody = String.format(
-                    "{\"from\": \"onboarding@resend.dev\", \"to\": \"sebastianmarriagahoyos@gmail.com\", \"subject\": \"🔔 Nuevo contacto: %s\", \"html\": \"<p><strong>De:</strong> %s (%s)</p><p><strong>Mensaje:</strong></p><div style='padding:10px; border-left:4px solid #bc13fe; background:#f4f4f4;'>%s</div>\"}",
-                    contact.name(), contact.name(), contact.email(), contact.message().replace("\n", "<br/>"));
+                    "{\"from\": \"onboarding@resend.dev\", \"to\": \"hado6529@gmail.com\", \"subject\": \"🚀 NUEVO_CONTACTO: %s\", \"html\": \"%s\"}",
+                    contact.name(), htmlContent.replace("\"", "\\\""));
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("https://api.resend.com/emails"))
