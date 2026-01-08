@@ -157,8 +157,7 @@ const Admin: React.FC = () => {
         const toolData = {
             name: formData.get('name'),
             category: formData.get('category'),
-            status: formData.get('status'),
-            progress: Number(formData.get('progress'))
+            status: formData.get('status')
         };
 
         try {
@@ -431,12 +430,12 @@ const Admin: React.FC = () => {
 
                             {/* LISTADO DE HABILIDADES TÉCNICAS */}
                             <section className="space-y-6">
-                                <div className="flex justify-between items-center border-b-2 border-cyber-purple pb-4">
+                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b-2 border-cyber-purple pb-4">
                                     <div className="flex items-center gap-3">
                                         <Book className="text-cyber-purple" />
                                         <h3 className="text-xl font-display font-bold text-white uppercase italic tracking-tighter">Hoja_de_Ruta_Taller</h3>
                                     </div>
-                                    <button onClick={() => { setEditingTool(null); setShowToolModal(true); }} className="bg-cyber-purple text-white px-6 py-2 font-mono text-xs font-bold hover:bg-white hover:text-black transition-all">
+                                    <button onClick={() => { setEditingTool(null); setShowToolModal(true); }} className="w-full sm:w-auto bg-cyber-purple text-white px-6 py-3 sm:py-2 font-mono text-xs font-bold hover:bg-white hover:text-black transition-all">
                                         <Plus size={16} className="inline mr-2" /> AGREGAR_SKILL
                                     </button>
                                 </div>
@@ -453,17 +452,12 @@ const Admin: React.FC = () => {
                                                     <button onClick={() => handleDeleteTool(t.id)} className="text-gray-500 hover:text-red-500"><Trash2 size={16} /></button>
                                                 </div>
                                             </div>
-                                            <div className="space-y-3">
-                                                <div className="flex justify-between text-[10px] font-mono text-gray-400">
-                                                    <span>Progreso_Operativo</span>
-                                                    <span>{t.progress}%</span>
-                                                </div>
-                                                <div className="h-1 bg-black w-full overflow-hidden">
-                                                    <div className="h-full bg-gradient-to-r from-cyber-purple to-cyber-cyan" style={{ width: `${t.progress}%` }}></div>
-                                                </div>
-                                                <div className="flex items-center gap-2 mt-2">
-                                                    <CheckCircle2 size={14} className={t.status === 'MASTERED' ? 'text-cyber-green' : 'text-gray-600'} />
-                                                    <span className={`text-[10px] font-mono uppercase font-bold ${t.status === 'MASTERED' ? 'text-cyber-green' : 'text-gray-600'}`}>[{t.status}]</span>
+                                            <div className="pt-2">
+                                                <div className="flex items-center gap-2">
+                                                    <CheckCircle2 size={16} className={t.status === 'MASTERED' ? 'text-cyber-green' : 'text-gray-600'} />
+                                                    <span className={`text-xs font-mono uppercase font-bold tracking-wider ${t.status === 'MASTERED' ? 'text-cyber-green' : 'text-gray-500'}`}>
+                                                        STATUS: {t.status}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </CyberCard>
@@ -536,17 +530,14 @@ const Admin: React.FC = () => {
                                     <option value="HERRAMIENTAS & CONCEPTOS">HERRAMIENTAS & CONCEPTOS</option>
                                 </select>
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="space-y-1">
-                                    <label className="text-[10px] font-mono text-gray-500 uppercase">Estado</label>
-                                    <select name="status" defaultValue={editingTool?.status || 'LEARNING'} className="w-full bg-black border border-cyber-dark p-3 text-xs text-cyber-purple outline-none">
-                                        <option value="LEARNING">APRENDIENDO</option>
-                                        <option value="INTERMEDIATE">INTERMEDIO</option>
-                                        <option value="BASIC">BÁSICO</option>
-                                        <option value="MASTERED">DOMINADO</option>
-                                    </select>
-                                </div>
-                                <FormField label="Progreso_%" name="progress" type="number" defaultValue={editingTool?.progress || 0} />
+                            <div className="space-y-1">
+                                <label className="text-xs font-mono text-gray-500 uppercase">Estado_De_Dominio</label>
+                                <select name="status" defaultValue={editingTool?.status || 'LEARNING'} className="w-full bg-black border border-cyber-dark p-4 text-sm text-cyber-purple outline-none font-mono">
+                                    <option value="LEARNING">APRENDIENDO [64%%]</option>
+                                    <option value="BASIC">CONOCIMIENTO_BÁSICO</option>
+                                    <option value="INTERMEDIATE">NIVEL_INTERMEDIO</option>
+                                    <option value="MASTERED">DOMINIO_TOTAL [HACKED]</option>
+                                </select>
                             </div>
                             <button disabled={loading} className="w-full bg-cyber-purple text-white font-bold p-3 uppercase tracking-widest hover:bg-white hover:text-black transition-all">
                                 [ ACTUALIZAR_MATRIZ ]

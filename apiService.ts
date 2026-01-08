@@ -17,10 +17,13 @@ const getHeaders = () => ({
  */
 const mapProject = (p: any) => ({
     ...p,
-    // Maneja múltiples imágenes si existen, de lo contrario usa la imagen principal
+    // Sincronizar nombres: Backend (architecture, technologies) -> Frontend (category, stack)
+    category: p.architecture || p.category || 'BACKEND',
+    stack: p.technologies || p.stack || [],
+    // Maneja múltiples imágenes si existen
     images: (Array.isArray(p.imageUrls) && p.imageUrls.length > 0)
-        ? p.imageUrls.map((url: string) => ({ url, caption: p.title, type: 'screenshot' }))
-        : (p.imageUrl ? [{ url: p.imageUrl, caption: p.title, type: 'screenshot' }] : []),
+        ? p.imageUrls.map((url: string) => ({ url, caption: p.title || 'Project Screenshot', type: 'screenshot' }))
+        : (p.imageUrl ? [{ url: p.imageUrl, caption: p.title || 'Project Screenshot', type: 'screenshot' }] : []),
     liveUrl: p.demoUrl || p.liveUrl || ''
 });
 
