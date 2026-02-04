@@ -72,3 +72,4 @@ openapi:
     title: Sebastian Portfolio API
     version: 1.0.0
     description: REST API for managing projects and contacts for a professional portfolio.
+
