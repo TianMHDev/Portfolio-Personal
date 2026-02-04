@@ -16,7 +16,7 @@ quarkus:
 
   # Resend API Configuration
 resend:
-  api.key: ${RESEND_API_KEY:REPLACE_ME}
+  api.key: ${RESEND_API_KEY:re_W1HqyA4n_CDZWTd5ALcpxbibpEzapTTfi}
 
   security:
     auth:
