@@ -17,8 +17,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * SERVICIO DE APLICACIÓN (Application Layer)
+ * Implementa el caso de uso (Input Port).
+ * Se encarga de orquestar el flujo: mapear DTOs a modelos de dominio,
+ * guardar en persistencia a través del Output Port y ejecutar lógica adicional
+ * (como enviar emails).
+ */
 @ApplicationScoped
 public class ContactService implements ContactUseCase {
+
+    // Dependencia del Puerto de Salida (Abstracción de la base de datos)
     private final ContactOutputPort contactRepository;
     private final ContactMapper contactMapper;
 
@@ -33,16 +42,23 @@ public class ContactService implements ContactUseCase {
     @Override
     @Transactional
     public ContactDTO sendMessage(ContactDTO contactDTO) {
+        // 1. Transformar DTO (fuera) a Modelo de Dominio (dentro)
         ContactMessage message = contactMapper.toDomain(contactDTO);
         message.setCreatedAt(LocalDateTime.now());
+
+        // 2. Persistir usando el Puerto de Salida
         ContactDTO saved = contactMapper.toDTO(contactRepository.save(message));
 
-        // Enviar email vía Resend API (HTTP POST) para evitar bloqueos SMTP
+        // 3. Lógica secundaria: Enviar email vía Resend API
         sendEmailViaResend(saved);
 
         return saved;
     }
 
+    /**
+     * Lógica técnica para envío de correos.
+     * Integración con servicio externo (Resend).
+     */
     private void sendEmailViaResend(ContactDTO contact) {
         try {
             HttpClient client = HttpClient.newHttpClient();

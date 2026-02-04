@@ -3,6 +3,12 @@ package com.sebastian.portfolio.domain.port.in;
 import com.sebastian.portfolio.application.dto.ProjectDTO;
 import java.util.List;
 
+/**
+ * PUERTO DE ENTRADA (Domain Layer)
+ * Define las acciones que el mundo exterior puede realizar en nuestra
+ * aplicación.
+ * Es la interfaz que implementará el servicio de aplicación.
+ */
 public interface ProjectUseCase {
     List<ProjectDTO> getAllProjects();
 

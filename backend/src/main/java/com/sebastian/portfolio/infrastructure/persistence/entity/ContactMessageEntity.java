@@ -3,6 +3,11 @@ package com.sebastian.portfolio.infrastructure.persistence.entity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * ENTIDAD JPA (Infrastructure Layer)
+ * Representa la tabla de la base de datos. Es específica de la tecnología
+ * (Hibernate/JPA).
+ */
 @Entity
 @Table(name = "contact_messages")
 public class ContactMessageEntity {

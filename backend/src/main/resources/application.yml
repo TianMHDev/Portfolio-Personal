@@ -6,13 +6,14 @@ quarkus:
       sql: true
 
   http:
+    port: ${PORT:8080}
     cors:
       enabled: true
       origins: "*"
       methods: GET,POST,PUT,DELETE,OPTIONS
       headers: "*"
       exposed-headers: Content-Disposition
-  
+
   # Resend API Configuration
 resend:
   api.key: ${RESEND_API_KEY:REPLACE_ME}
@@ -47,7 +48,8 @@ resend:
       username: ${DB_USERNAME:postgres}
       password: ${DB_PASSWORD:}
       jdbc:
-        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:railway}
+        # Priorizamos DATABASE_URL (usada por Render/Railway) o construimos con host/port
+        url: ${DATABASE_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:railway}}
     hibernate-orm:
       database:
         generation: update

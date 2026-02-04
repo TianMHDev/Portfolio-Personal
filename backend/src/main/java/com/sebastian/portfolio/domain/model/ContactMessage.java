@@ -2,6 +2,11 @@ package com.sebastian.portfolio.domain.model;
 
 import java.time.LocalDateTime;
 
+/**
+ * MODELO DE DOMINIO (Domain Layer)
+ * Representa la entidad de negocio. Es la "verdad" del sistema.
+ * No depende de ninguna tecnología (ni JPA, ni JSON, ni Spring).
+ */
 public class ContactMessage {
     private Long id;
     private String name;
